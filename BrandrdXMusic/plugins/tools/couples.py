@@ -4,12 +4,22 @@ from datetime import datetime
 from telegraph import upload_file
 from PIL import Image , ImageDraw
 from pyrogram import *
-from pyrogram.types import *
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.enums import *
 
 #BOT FILE NAME
 from BrandrdXMusic import app as app
 from BrandrdXMusic.mongo.couples_db import _get_image, get_couple
+
+POLICE = [
+    [
+        InlineKeyboardButton(
+            text="ᴍʏ ᴄᴜᴛᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ  🥀",
+            url=f"https://t.me/BRANDED_PAID_CC",
+        ),
+    ],
+]
+
 
 def dt():
     now = datetime.now()
@@ -35,11 +45,11 @@ today = str(dt()[0])
 async def ctest(_, message):
     cid = message.chat.id
     if message.chat.type == ChatType.PRIVATE:
-        return await message.reply_text("This command only works in groups.")
+        return await message.reply_text("ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴏɴʟʏ ᴡᴏʀᴋs ɪɴ ɢʀᴏᴜᴘs.")
     try:
      #  is_selected = await get_couple(cid, today)
      #  if not is_selected:
-         msg = await message.reply_text("ɢᴇɴᴇʀᴀᴛɪɴɢ ᴄᴏᴜᴘʟᴇꜱ ɪᴍᴀɢᴇ...")
+         msg = await message.reply_text("ɢᴇɴᴇʀᴀᴛɪɴɢ ᴄᴏᴜᴘʟᴇs ɪᴍᴀɢᴇ...")
          #GET LIST OF USERS
          list_of_users = []
 
@@ -96,14 +106,15 @@ async def ctest(_, message):
          img.save(f'test_{cid}.png')
     
          TXT = f"""
-**𝐓𝐎𝐃𝐀𝐘'𝐒 𝐒𝐄𝐋𝐄𝐂𝐓𝐄𝐃 𝐂𝐎𝐔𝐏𝐋𝐄𝐒 🎉 :
-➖➖➖➖➖➖➖➖➖➖➖➖
-{N1} + {N2} = ❣️
-➖➖➖➖➖➖➖➖➖➖➖➖
-𝐍𝐄𝐗𝐓 𝐂𝐎𝐔𝐏𝐋𝐄𝐒 𝐖𝐈𝐋𝐋 𝐁𝐄 𝐒𝐄𝐋𝐄𝐂𝐓𝐄𝐃 𝐎𝐍 {tomorrow} !!**
+**ᴛᴏᴅᴀʏ's ᴄᴏᴜᴘʟᴇ ᴏғ ᴛʜᴇ ᴅᴀʏ :
+
+{N1} + {N2} = 💚
+
+ɴᴇxᴛ ᴄᴏᴜᴘʟᴇs ᴡɪʟʟ ʙᴇ sᴇʟᴇᴄᴛᴇᴅ ᴏɴ {tomorrow} !!**
 """
     
-         await message.reply_photo(f"test_{cid}.png", caption=TXT)
+         await message.reply_photo(f"test_{cid}.png", caption=TXT, reply_markup=InlineKeyboardMarkup(POLICE),
+    )
          await msg.delete()
          a = upload_file(f"test_{cid}.png")
          for x in a:
@@ -113,7 +124,7 @@ async def ctest(_, message):
     
          
       # elif is_selected:
-      #   msg = await message.reply_text("𝗚𝗘𝗧𝗧𝗜𝗡𝗚 𝐓𝐎𝐃𝐀𝐘'𝐒 𝐂𝐎𝐔𝐏𝐋𝐄𝐒 𝐈𝐌𝐀𝐆𝐄...")
+      #   msg = await message.reply_text("𝐆ᴇᴛᴛɪɴɢ 𝐓ᴏᴅᴀʏs 𝐂ᴏᴜᴘʟᴇs 𝐈ᴍᴀɢᴇ...")
       #   b = await _get_image(cid)
        #  c1_id = int(is_selected["c1_id"])
        #  c2_id = int(is_selected["c2_id"])
@@ -121,13 +132,12 @@ async def ctest(_, message):
         # c2_name = (await app.get_users(c2_id)).first_name
          
       #   TXT = f"""
-#**𝐓𝐎𝐃𝐀𝐘'𝐒 𝐒𝐄𝐋𝐄𝐂𝐓𝐄𝐃 𝐂𝐎𝐔𝐏𝐋𝐄𝐒 🎉 :
+#**ᴛᴏᴅᴀʏ's sᴇʟᴇᴄᴛᴇᴅ ᴄᴏᴜᴘʟᴇs 🎉 :
 #➖➖➖➖➖➖➖➖➖➖➖➖
 #[{c1_name}](tg://openmessage?user_id={c1_id}) + [{c2_name}](tg://openmessage?user_id={c2_id}) = ❣️
 #➖➖➖➖➖➖➖➖➖➖➖➖
-#𝐍𝐄𝐗𝐓 𝐂𝐎𝐔𝐏𝐋𝐄𝐒 𝐖𝐈𝐋𝐋 𝐁𝐄 𝐒𝐄𝐋𝐄𝐂𝐓𝐄𝐃 𝐎𝐍 {tomorrow} !!**
+#ɴᴇxᴛ ᴄᴏᴜᴘʟᴇꜱ ᴡɪʟʟ ʙᴇ ꜱᴇʟᴇᴄᴛᴇᴅ ᴏɴ {tomorrow} !!**
 #"""
-
  #        await message.reply_photo(b, caption=TXT)
         # await msg.delete()
     except Exception as e:
@@ -138,8 +148,20 @@ async def ctest(_, message):
       os.remove(f"test_{cid}.png")
     except Exception:
        pass
+         
 
 __mod__ = "COUPLES"
 __help__ = """
 **» /couples** - Get Todays Couples Of The Group In Interactive View
 """
+
+
+
+
+
+    
+
+
+
+
+    
