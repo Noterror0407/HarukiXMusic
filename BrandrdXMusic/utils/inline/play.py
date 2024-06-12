@@ -68,10 +68,10 @@ def stream_markup_timer(_, vidid, chat_id, played, dur):
         ],
         [
             InlineKeyboardButton(
-                text="⛦ ᴏᴡɴᴇʀ ❥", url=f"https://t.me/ANSHKING82"
+                text="⛦ ᴏᴡɴᴇʀ ❥", url=f"https://t.me/Zenitsu_tharki"
             ),
             InlineKeyboardButton(
-                text="⛦ ᴄʜᴀᴛ ❥", url=f"https://t.me/anshsharmagroup"
+                text="⛦ ᴄʜᴀᴛ ❥", url=f"https://t.me/Haruki_bot_support"
             ),
         ],
         [InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close")],
